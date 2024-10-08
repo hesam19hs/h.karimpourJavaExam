@@ -13,9 +13,55 @@ public class Planets implements SpecialFeatures {
         this.lifeExistence = lifeExistence;
         this.resourceType = resourceType;
     }
-    public String getPlanetName() {        return planetName;    }
-    public String getNumberOfMoons() {        return numberOfMoons;    }
-    public void setNumberOfMoons(String numberOfMoons) {        this.numberOfMoons = numberOfMoons;    }
+
+    public String getPlanetName() {
+        return planetName;
+    }
+
+    public void setPlanetName(String planetName) {
+        this.planetName = planetName;
+    }
+
+    public PlanetsType getPlanetsType() {
+        return planetsType;
+    }
+
+    public void setPlanetsType(PlanetsType planetsType) {
+        this.planetsType = planetsType;
+    }
+
+    public String getNumberOfMoons() {
+        return numberOfMoons;
+    }
+
+    public void setNumberOfMoons(String numberOfMoons) {
+        this.numberOfMoons = numberOfMoons;
+    }
+
+    public String getDistanceFromSun() {
+        return distanceFromSun;
+    }
+
+    public void setDistanceFromSun(String distanceFromSun) {
+        this.distanceFromSun = distanceFromSun;
+    }
+
+    public LifeExistence getLifeExistence() {
+        return lifeExistence;
+    }
+
+    public void setLifeExistence(LifeExistence lifeExistence) {
+        this.lifeExistence = lifeExistence;
+    }
+
+    public ResourceType getResourceType() {
+        return resourceType;
+    }
+
+    public void setResourceType(ResourceType resourceType) {
+        this.resourceType = resourceType;
+    }
+
     @Override
     public void Life_SupportingPlanet() {
         System.out.println("Hayat darad");
