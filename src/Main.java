@@ -11,7 +11,6 @@ public class Main {
         //getPlanetFromFile(galaxy);
 
     }
-
     private static void mainMenu(Scanner scanner, Galaxy galaxy) {
         while (true){
             try{
@@ -33,7 +32,7 @@ public class Main {
                         getPlanetFromFile(galaxy);
                         break;
                     case "3":
-                        //
+                        changeMoonCount(scanner, galaxy);
                         break;
                     case "4":
                         System.out.println(galaxy.getPlanets());
@@ -48,7 +47,23 @@ public class Main {
             }
         }
     }
-    private static void getPlanetFromFile(Galaxy galaxy) {
+    private static Galaxy defineGalaxy(Scanner scanner) {
+        while (true){
+            try{
+                System.out.println("Enter Galaxy name: ");
+                String glxyName = scanner.nextLine();
+                if(glxyName.trim().equals("")){
+                    throw new Exception("Invalid name");
+                }
+                List<Planets> planets = new ArrayList<>();
+                Galaxy galaxy = new Galaxy(glxyName, planets);
+                return galaxy;
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+    private static Planets getPlanetFromFile(Galaxy galaxy) {
         File galaxyFile = new File("C:\\Users\\Dotin\\IdeaProjects\\h.karimpourJavaExam\\Galaxy.txt");
         try{
             try (Scanner s1 = new Scanner(galaxyFile)) {
@@ -97,21 +112,22 @@ public class Main {
         } catch (FileNotFoundException e) {
             throw new RuntimeException(e);
         }
+        return null;
     }
-    private static Galaxy defineGalaxy(Scanner scanner) {
-        while (true){
-            try{
-                System.out.println("Enter Galaxy name: ");
-                String glxyName = scanner.nextLine();
-                if(glxyName.trim().equals("")){
-                    throw new Exception("Invalid name");
-                }
-                List<Planets> planets = new ArrayList<>();
-                Galaxy galaxy = new Galaxy(glxyName, planets);
-                return galaxy;
-            } catch (Exception e) {
-                System.err.println(e.getMessage());
+    private static void changeMoonCount(Scanner scanner, Galaxy galaxy) {
+        System.out.println("Enter Planet name: ");
+        String plName = scanner.nextLine();
+        Planets planets = getPlanetFromFile(galaxy);
+        if (plName != "") {
+            System.out.print("Enter new Moon number: ");
+            String newMoons = scanner.nextLine();
+            if (planets != null && planets.getPlanetName().equals(plName)) {
+                planets.setNumberOfMoons(newMoons);
+            }else {
+                System.out.println("Planet not exist");
             }
+        } else {
+            System.out.println("Planet name Invalid!");
         }
     }
 }

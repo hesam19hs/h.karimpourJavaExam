@@ -1,5 +1,5 @@
 public class Planets implements SpecialFeatures {
-    private String planetName;
+    String planetName;
     private PlanetsType planetsType;
     private String numberOfMoons;
     private String distanceFromSun;
@@ -13,6 +13,9 @@ public class Planets implements SpecialFeatures {
         this.lifeExistence = lifeExistence;
         this.resourceType = resourceType;
     }
+    public String getPlanetName() {        return planetName;    }
+    public String getNumberOfMoons() {        return numberOfMoons;    }
+    public void setNumberOfMoons(String numberOfMoons) {        this.numberOfMoons = numberOfMoons;    }
     @Override
     public void Life_SupportingPlanet() {
         System.out.println("Hayat darad");
