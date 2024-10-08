@@ -3,27 +3,52 @@ import java.io.FileNotFoundException;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
-
 public class Main {
     public static void main(String[] args) {
         Scanner scanner = new Scanner(System.in);
         Galaxy galaxy = defineGalaxy(scanner);
-        getGalaxyFromFile(galaxy);
-
-
-        System.out.println(galaxy);
-        System.out.println(galaxy.getPlanets());
-
-
-
-
+        mainMenu(scanner, galaxy);
+        //getPlanetFromFile(galaxy);
 
     }
 
-
-
-
-    private static void getGalaxyFromFile(Galaxy galaxy) {
+    private static void mainMenu(Scanner scanner, Galaxy galaxy) {
+        while (true){
+            try{
+                System.out.println("Welcom to Galaxy management system!\n" +
+                        "1.Show Galaxys\n" +
+                        "2.Add New Planet\n" +
+                        "3.Change Number Of Planet's Moon\n" +
+                        "4.Show Planet Info\n" +
+                        "5.Save Data And Exit");
+                String inputNum = scanner.nextLine();
+                if(inputNum.trim().equals("")){
+                    throw new Exception("Invalid name");
+                }
+                switch (inputNum) {
+                    case "1":
+                        System.out.println(galaxy);
+                        break;
+                    case "2":
+                        getPlanetFromFile(galaxy);
+                        break;
+                    case "3":
+                        //
+                        break;
+                    case "4":
+                        System.out.println(galaxy.getPlanets());
+                        break;
+                    case "5":
+                        System.out.println("Data is saved successfully, By!");
+                        return;
+                        //break;
+                }
+            } catch (Exception e) {
+                System.err.println(e.getMessage());
+            }
+        }
+    }
+    private static void getPlanetFromFile(Galaxy galaxy) {
         File galaxyFile = new File("C:\\Users\\Dotin\\IdeaProjects\\h.karimpourJavaExam\\Galaxy.txt");
         try{
             try (Scanner s1 = new Scanner(galaxyFile)) {

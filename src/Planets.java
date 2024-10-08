@@ -1,5 +1,3 @@
-import java.util.List;
-
 public class Planets implements SpecialFeatures {
     private String planetName;
     private PlanetsType planetsType;
@@ -7,7 +5,6 @@ public class Planets implements SpecialFeatures {
     private String distanceFromSun;
     private LifeExistence lifeExistence;
     private ResourceType resourceType;
-
     public Planets(String planetName, PlanetsType planetsType, String numberOfMoons, String distanceFromSun, LifeExistence lifeExistence, ResourceType resourceType) {
         this.planetName = planetName;
         this.planetsType = planetsType;
@@ -16,7 +13,6 @@ public class Planets implements SpecialFeatures {
         this.lifeExistence = lifeExistence;
         this.resourceType = resourceType;
     }
-
     @Override
     public void Life_SupportingPlanet() {
         System.out.println("Hayat darad");
@@ -25,7 +21,6 @@ public class Planets implements SpecialFeatures {
     public void Resource_RichPlanet(){
         System.out.println("Manabe darad");
     }
-
     @Override
     public String toString() {
         return "Planets{" +
