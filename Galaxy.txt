@@ -1,0 +1,2 @@
+Earth#Rock#1#150#Yes#Water
+Suturn#Gas#83#1434#No#Iron
