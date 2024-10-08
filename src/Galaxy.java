@@ -1,7 +1,7 @@
 import java.util.List;
 
 public class Galaxy {
-    private String name;
+    private String galaxyName;
     private List<Planets> planets;
 
 }
