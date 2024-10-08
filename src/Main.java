@@ -1,5 +1,4 @@
-import java.io.File;
-import java.io.FileNotFoundException;
+import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
@@ -8,8 +7,6 @@ public class Main {
         Scanner scanner = new Scanner(System.in);
         Galaxy galaxy = defineGalaxy(scanner);
         mainMenu(scanner, galaxy);
-        //getPlanetFromFile(galaxy);
-
     }
     private static void mainMenu(Scanner scanner, Galaxy galaxy) {
         while (true){
@@ -39,6 +36,7 @@ public class Main {
                         break;
                     case "5":
                         System.out.println("Data is saved successfully, By!");
+                        saveData(galaxy);
                         return;
                         //break;
                 }
@@ -128,6 +126,19 @@ public class Main {
             }
         } else {
             System.out.println("Planet name Invalid!");
+        }
+    }
+    private static void saveData(Galaxy galaxy) {
+        try ( BufferedWriter writer = new BufferedWriter(new FileWriter("C:\\Users\\Dotin\\IdeaProjects\\h.karimpourJavaExam\\Galaxy.txt")) ){
+            String exportData = "";
+            for(Planets planets : galaxy.getPlanets()){
+                String planetsString = planets.toString() + "\n";
+                exportData += planetsString;
+            }
+            exportData = exportData.substring(0, exportData.length() - 1);
+            writer.write(exportData);
+        }catch (IOException e){
+            throw new RuntimeException(e);
         }
     }
 }

@@ -1,2 +1,4 @@
-Earth#Rock#1#150#Yes#Water
-Suturn#Gas#83#1434#No#Iron
+Planets{planetName='Earth', planetsType=Rock, numberOfMoons='1', distanceFromSun='150', lifeExistence=Yes, resourceType=Water}
+Planets{planetName='Suturn', planetsType=Gas, numberOfMoons='83', distanceFromSun='1434', lifeExistence=No, resourceType=Iron}
+Planets{planetName='Earth', planetsType=Rock, numberOfMoons='1', distanceFromSun='150', lifeExistence=Yes, resourceType=Water}
+Planets{planetName='Suturn', planetsType=Gas, numberOfMoons='83', distanceFromSun='1434', lifeExistence=No, resourceType=Iron}
