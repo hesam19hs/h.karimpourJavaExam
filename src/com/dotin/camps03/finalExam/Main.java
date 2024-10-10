@@ -1,3 +1,4 @@
+package com.dotin.camps03.finalExam;
 import java.io.*;
 import java.util.ArrayList;
 import java.util.List;
@@ -11,22 +12,26 @@ public class Main {
     private static void mainMenu(Scanner scanner, Galaxy galaxy) {
         while (true){
             try{
-                System.out.println("Welcom to Galaxy management system!\n" +
+                System.out.println("Welcome to Galaxy management system!\n" +
                         "1.Show Galaxys\n" +
-                        "2.Add New Planet\n" +
+                        "2.1 Add New Planet from File\n" +
+                        "2.2 Add New Planet By User\n" +
                         "3.Change Number Of Planet's Moon\n" +
                         "4.Show Planet Info\n" +
                         "5.Save Data And Exit");
                 String inputNum = scanner.nextLine();
                 if(inputNum.trim().equals("")){
-                    throw new Exception("Invalid name");
+                    throw new Exception("Invalid number!");
                 }
                 switch (inputNum) {
                     case "1":
                         System.out.println(galaxy);
                         break;
-                    case "2":
+                    case "2.1":
                         getPlanetFromFile(galaxy);
+                        break;
+                    case "2.2":
+                        getPlanetFromUser(scanner, galaxy);
                         break;
                     case "3":
                         changeMoonCount(scanner, galaxy);
@@ -38,7 +43,8 @@ public class Main {
                         System.out.println("Data is saved successfully, By!");
                         saveData(galaxy);
                         return;
-                        //break;
+                    default:
+                        System.out.println("invalid value!");
                 }
             } catch (Exception e) {
                 System.err.println(e.getMessage());
@@ -77,6 +83,8 @@ public class Main {
                         case "Gas":
                             planetsTypes = planetsTypes.Gas;
                             break;
+                        default:
+                            System.out.println("invalid value!");
                     }
                     String numberOfMoons = planStr.split("#")[2];
                     String distanceFromSun = planStr.split("#")[3];
@@ -89,6 +97,8 @@ public class Main {
                         case "No":
                             lifeExistences = lifeExistences.No;
                             break;
+                        default:
+                            System.out.println("invalid value!");
                     }
                     String resourceType = planStr.split("#")[5];
                     ResourceType resourceTypes = null;
@@ -102,6 +112,8 @@ public class Main {
                         case "Iron":
                             resourceTypes = resourceTypes.Iron;
                             break;
+                        default:
+                            System.out.println("invalid value!");
                     }
                     Planets planets = new Planets(planetName, planetsTypes, numberOfMoons, distanceFromSun, lifeExistences, resourceTypes);
                     galaxy.getPlanets().add(planets);
@@ -111,6 +123,61 @@ public class Main {
             throw new RuntimeException(e);
         }
         return null;
+    }
+    private static void getPlanetFromUser(Scanner scanner, Galaxy galaxy) throws Exception {
+        System.out.println("Enter Planet info: (ex: Earth-Rock-1-150-Yes-Water) ");
+        String planetString = scanner.nextLine();
+        String planetName = planetString.split("-")[0];
+        String PlanetsType = planetString.split("-")[1];
+        PlanetsType planetsTypes = null;
+        switch (PlanetsType) {
+            case "Rock":
+                planetsTypes = planetsTypes.Rock;
+                break;
+            case "Gas":
+                planetsTypes = planetsTypes.Gas;
+                break;
+            default:
+                System.out.println("invalid value!");
+        }
+        String numberOfMoons = planetString.split("-")[2];
+        String distanceFromSun = planetString.split("-")[3];
+        String lifeExistence = planetString.split("-")[4];
+        LifeExistence lifeExistences = null;
+        switch (lifeExistence) {
+            case "Yes":
+                lifeExistences = lifeExistences.Yes;
+                break;
+            case "No":
+                lifeExistences = lifeExistences.No;
+                break;
+            default:
+                System.out.println("invalid value!");
+        }
+        String resourceType = planetString.split("-")[5];
+        ResourceType resourceTypes = null;
+        switch (resourceType) {
+            case "Water":
+                resourceTypes = resourceTypes.Water;
+                break;
+            case "Gold":
+                resourceTypes = resourceTypes.Gold;
+                break;
+            case "Iron":
+                resourceTypes = resourceTypes.Iron;
+                break;
+            default:
+                System.out.println("invalid value!");
+        }
+        for (Planets planets : galaxy.getPlanets()){
+            if( !(planets.getPlanetName().equals(planetName)) ){
+                planets = new Planets(planetName, planetsTypes, numberOfMoons, distanceFromSun, lifeExistences, resourceTypes);
+                galaxy.getPlanets().add(planets);
+                break;
+            }else {
+                throw new Exception("Planet with the name is already exists");
+            }
+        }
     }
     private static void changeMoonCount(Scanner scanner, Galaxy galaxy) {
         System.out.println("Enter Planet name: ");

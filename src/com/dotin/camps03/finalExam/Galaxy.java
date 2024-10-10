@@ -1,3 +1,4 @@
+package com.dotin.camps03.finalExam;
 import java.util.List;
 public class Galaxy {
     private String galaxyName;
@@ -12,9 +13,6 @@ public class Galaxy {
     public void setPlanets(List<Planets> planets) {        this.planets = planets;    }
     @Override
     public String toString() {
-        return "Galaxy{" +
-                "galaxyName='" + galaxyName + '\'' +
-                ", planets=" + planets +
-                '}';
+        return "{Galaxy Name = '" + galaxyName + "', Planets = " + planets + '}';
     }
 }
